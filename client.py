@@ -1,10 +1,11 @@
 import socket
 import select
 import errno
+import sys
 
 HEADER_LENGTH = 10
 
-IP = "192.168.1.45"
+IP = "192.168.1.35"
 PORT = 1234
 my_username = input("Username: ")
 

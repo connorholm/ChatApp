@@ -3,7 +3,7 @@ import select
 
 HEADER_LENGTH = 10
 
-IP = "192.168.1.45"
+IP = "192.168.1.35"
 PORT = 1234
 
 # Create a socket
@@ -45,7 +45,7 @@ def receive_message(client_socket):
 
         # Convert header to int value
         message_length = int(message_header.decode('utf-8').strip())
-
+        
         # Return an object of message header and message data
         return {'header': message_header, 'data': client_socket.recv(message_length)}
 
