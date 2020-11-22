@@ -1,2 +1,3 @@
 https://www.tutorialspoint.com/python/python_networking.htm
 https://docs.python.org/3/library/socket.html
+https://www.geeksforgeeks.org/simple-chat-room-using-python/

@@ -47,6 +47,7 @@ def receive_message(client_socket):
         message_length = int(message_header.decode('utf-8').strip())
         
         # Return an object of message header and message data
+        print(message_header)
         return {'header': message_header, 'data': client_socket.recv(message_length)}
 
     except:
