@@ -10,12 +10,13 @@ clientsInfo = []
 print("Listening for Clients")
 
 def listenClients(s):
-    try:
-        message = s.recv(1024).decode('utf-8')
-    except:
-        print("No longer connected")
-    for client in clientsInfo:
-        client.send(message.encode('utf-8'))
+    while True:
+        try:
+            message = s.recv(1024).decode('utf-8')
+        except Exception as e:
+            print("No longer connected")
+        for client in clientsInfo:
+            client.send(message.encode('utf-8'))
 while True:
     c , addr = s.accept()
     print("Got connection to "+str(addr))
