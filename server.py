@@ -1,31 +1,26 @@
 import socket
-import select
-
-HEADER_LENGTH = 10
+from threading import Thread
 
 IP = socket.gethostname()
 PORT = 1234
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((IP, PORT))
-s.listen()
-
+s.listen(5)
 clientsInfo = []
-def recvMessage():
-    return True
+print("Listening for Clients")
+
+def listenClients(s):
+    try:
+        message = s.recv(1024).decode('utf-8')
+    except:
+        print("No longer connected")
+    for client in clientsInfo:
+        client.send(message.encode('utf-8'))
 while True:
-#   for client in clients:
-#        if client
     c , addr = s.accept()
     print("Got connection to "+str(addr))
-    output = 'Thank you for connecting'
-    c.sendall(output.encode('utf-8'))
-    clientsInfo.append(
-        {
-            c,
-            addr
-        }
-    )
-    print(clientsInfo)
-    input = c.recv(1024)
-    print(input.decode("utf-8"))
-    c.close()
+    clientsInfo.append(c)
+    thread = Thread(target=listenClients, args=(c,)) 
+    thread.daemon = True
+    thread.start()
+
