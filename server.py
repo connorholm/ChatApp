@@ -14,4 +14,7 @@ while True:
     print("Got connection")
     output = 'Thank you for connecting'
     c.sendall(output.encode('utf-8'))
+   
+    input = c.recv(1024)
+    print(input.decode("utf-8"))
     c.close()  
