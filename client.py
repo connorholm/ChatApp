@@ -1,8 +1,8 @@
-import socket               # Import socket module
+import socket
 
-s = socket.socket()         # Create a socket object
-host = socket.gethostname() # Get local machine name
-port = 1234                # Reserve a port for your service.
+s = socket.socket()
+host = socket.gethostname()
+port = 1234
 
 s.connect((host, port))
 output = s.recv(1024)
