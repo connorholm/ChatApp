@@ -15,4 +15,7 @@ thread.daemon = True
 thread.start()
 while True:
     clientMessage = input("Send to Chat: ")
+    if clientMessage == "quit":
+        s.close()
+        break
     s.send(clientMessage.encode('utf-8'))
