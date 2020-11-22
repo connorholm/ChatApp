@@ -1,14 +1,18 @@
 import socket
-
+from threading import Thread
 s = socket.socket()
 host = socket.gethostname()
 port = 1234
-
 s.connect((host, port))
-output = s.recv(1024)
-print(output.decode("utf-8"))
+print("Connected to server")
 
-message = "Message to the server from the client"
-s.send(message.encode('utf-8'))
-
-s.close()
+def getMessages():
+    while True:
+        message = s.recv(1024).decode("utf-8")
+        print(f"\n{message}")
+thread = Thread(target=getMessages)
+thread.daemon = True
+thread.start()
+while True:
+    clientMessage = input("Send to Chat: ")
+    s.send(clientMessage.encode('utf-8'))
