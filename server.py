@@ -20,7 +20,9 @@ def listenClients(s):
 while True:
     c , addr = s.accept()
     print("Got connection to "+str(addr))
-    clientsInfo.append(c)
+    clientsInfo.append(
+        c
+        )
     thread = Thread(target=listenClients, args=(c,)) 
     thread.daemon = True
     thread.start()

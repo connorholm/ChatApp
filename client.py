@@ -6,6 +6,7 @@ host = socket.gethostname()
 port = 1234
 s.connect((host, port))
 print("Connected to server")
+username = input("Enter user name: ")
 
 def getMessages():
     while True:
@@ -18,8 +19,9 @@ thread.start()
 
 while True:
     clientMessage = input()
+    sendMessage = f"{username}: {clientMessage}"
     if clientMessage == "quit":
         break
-    s.send(clientMessage.encode('utf-8'))
+    s.send(sendMessage.encode('utf-8'))
 
 s.close()
