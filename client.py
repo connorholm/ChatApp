@@ -1,5 +1,6 @@
 import socket
 from threading import Thread
+
 s = socket.socket()
 host = socket.gethostname()
 port = 1234
