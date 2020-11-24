@@ -1,6 +1,11 @@
 import socket
 from threading import Thread
+from colorama import Fore, init, Back
+import random
+init()
 
+colors = [Fore.BLACK, Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN, Fore.WHITE]
+cColor = random.choice(colors)
 s = socket.socket()
 host = socket.gethostname()
 port = 1234
@@ -19,7 +24,7 @@ thread.start()
 
 while True:
     clientMessage = input()
-    sendMessage = f"{username}: {clientMessage}"
+    sendMessage = f"{cColor}{username}: {clientMessage}{Fore.RESET}"
     if clientMessage == "quit":
         break
     s.send(sendMessage.encode('utf-8'))
