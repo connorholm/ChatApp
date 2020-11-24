@@ -12,6 +12,8 @@ port = 1234
 s.connect((host, port))
 print("Connected to server")
 username = input("Enter user name: ")
+joinedMessage = f"{cColor}{username} has joined the chat!{Fore.RESET}"
+s.send(joinedMessage.encode('utf-8'))
 
 def getMessages():
     while True:
