@@ -2,7 +2,7 @@ import socket
 from threading import Thread
 
 s = socket.socket()
-host = socket.gethostname()
+host = "45.33.20.96"
 port = 1234
 s.connect((host, port))
 print("Connected to server")

@@ -1,7 +1,7 @@
 import socket
 from threading import Thread
 
-IP = socket.gethostname()
+IP = "45.33.20.96"
 PORT = 1234
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((IP, PORT))
