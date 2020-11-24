@@ -14,7 +14,8 @@ def listenClients(s):
         try:
             message = s.recv(1024).decode('utf-8')
         except Exception as e:
-            print("No longer connected")
+            print(f"Error: {e}")
+            clientsInfo.remove(s)
         for client in clientsInfo:
             client.send(message.encode('utf-8'))
 while True:
