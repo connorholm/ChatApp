@@ -4,7 +4,6 @@ from threading import Thread
 from time import sleep
 import random
 
-
 root = Tk()
 root.title("Chat App")
 
@@ -24,7 +23,6 @@ textInput = Entry(Inputframe, width = 55, bd = 5)
 textInput.pack(side = RIGHT)
 
 
-#textInput.insert(0,"Send something to the chat")
 scrollbar = Scrollbar(ChatFrame)
 scrollbar.pack( side = RIGHT, fill = Y )
 
@@ -34,30 +32,12 @@ mylist.pack( side = LEFT, fill = BOTH )
 scrollbar.config( command = mylist.yview )
 
 def buttonClicked():
+    username = "default"
     message = textInput.get()
     mylist.insert(END, message)
-    index = 0
-    username = "default"
-    while True:
-        chat = mylist.get(index)
-        if index == 0:
-            index = index +1
-            continue
-        if chat == "":
-            break
-        if chat[:-5] == "chat!":
-            continue
-        else:
-            username = chat
-            break
-        index = index +1
-    if mylist.get(1) != username:
-        joinedMessage = f"{username} has joined the chat!"
-        s.send(joinedMessage.encode('utf-8'))
-    if mylist.get(2) != "":
+    if mylist.get(1) != "":
         sendMessage = f"{username}: {message}"
         if message == "quit":
-            s.send(sendMessage.encode('utf-8'))
             s.close()
         s.send(sendMessage.encode('utf-8'))
     
