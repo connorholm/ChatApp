@@ -32,12 +32,12 @@ scrollbar.config( command = mylist.yview )
 
 def buttonClicked():
     message = textInput.get()
-    mylist.insert(END, message)
+    if mylist.size() == 1:
+        mylist.insert(END, message)
     username = mylist.get(1)
     if mylist.size() == 2:
         joinMessage = f"{username} has joined the chat!"
         s.send(joinMessage.encode("utf-8"))
-
     if mylist.size() > 2:
         sendMessage = f"{username}: {message}"
         if message == "quit":
