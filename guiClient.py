@@ -32,18 +32,23 @@ mylist.pack( side = LEFT, fill = BOTH )
 scrollbar.config( command = mylist.yview )
 
 def buttonClicked():
-    if mylist.get(1) == "":
-        startDaemon()
-    username = "default"
     message = textInput.get()
     mylist.insert(END, message)
     username = mylist.get(1)
-    if mylist.get(1) != "":
+    if mylist.size() == 2:
+        joinMessage = f"{username} has joined the chat!"
+        s.send(joinMessage.encode("utf-8"))
+
+    if mylist.size() > 2:
         sendMessage = f"{username}: {message}"
         if message == "quit":
+            closeMessage = f'{username} has left the chat'
+            s.send(closeMessage.encode("utf-8"))
             s.close()
-        s.send(sendMessage.encode('utf-8'))
-    
+        s.send(sendMessage.encode('utf-8'))  
+    if mylist.get(1) == username:
+        startDaemon()
+
 
 button = Button(Inputframe, text="Send", width = 20, height = 2, bg = "gray83", command=buttonClicked)
 button.pack(side = LEFT)
