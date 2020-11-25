@@ -44,6 +44,7 @@ def buttonClicked():
             closeMessage = f'{username} has left the chat'
             s.send(closeMessage.encode("utf-8"))
             s.close()
+            root.destroy()
         s.send(sendMessage.encode('utf-8'))  
     if mylist.get(1) == username:
         startDaemon()
