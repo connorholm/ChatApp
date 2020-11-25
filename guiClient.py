@@ -32,9 +32,12 @@ mylist.pack( side = LEFT, fill = BOTH )
 scrollbar.config( command = mylist.yview )
 
 def buttonClicked():
+    if mylist.get(1) == "":
+        startDaemon()
     username = "default"
     message = textInput.get()
     mylist.insert(END, message)
+    username = mylist.get(1)
     if mylist.get(1) != "":
         sendMessage = f"{username}: {message}"
         if message == "quit":
@@ -45,7 +48,7 @@ def buttonClicked():
 button = Button(Inputframe, text="Send", width = 20, height = 2, bg = "gray83", command=buttonClicked)
 button.pack(side = LEFT)
 
-mylist.insert(END, "Enter your Username and click Send")
+mylist.insert(END, "Enter your Username (Send)")
 
 s = socket.socket()
 host = "45.33.20.96"
@@ -55,10 +58,11 @@ def getMessages():
     while True:
         message = s.recv(1024).decode("utf-8")
         mylist.insert(END, f"\n{message}")
+def startDaemon():
+    thread = Thread(target=getMessages)
+    thread.daemon = True
+    thread.start()
 
-thread = Thread(target=getMessages)
-thread.daemon = True
-thread.start()
 
 root.mainloop()
 
