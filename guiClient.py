@@ -1,7 +1,6 @@
 from tkinter import *
 import socket
 from threading import Thread
-from time import sleep
 import random
 
 root = Tk()
