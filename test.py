@@ -5,7 +5,6 @@ import random
 
 root = Tk()
 root.title("Chat App")
-root.bind('<KeyPress>', ifEnterPressed)
 
 
 Inputframe = Frame(root, width = 1000, height = 100)
@@ -32,8 +31,8 @@ mylist = Listbox(ChatFrame, yscrollcommand = scrollbar.set, width = 80, height =
 mylist.pack( side = LEFT, fill = BOTH )
 scrollbar.config( command = mylist.yview )
 
-def ifEnterPressed():
-    if (event.char, ) == "":
+def ifEnterPressed(event):
+    if (event.char, ) == ('\r',):
         message = textInput.get()
         if mylist.size() == 1:
             mylist.insert(END, message)
@@ -51,11 +50,7 @@ def ifEnterPressed():
             s.send(sendMessage.encode('utf-8'))  
         if mylist.get(1) == username:
             startDaemon()
-    
 
-
-button = Button(Inputframe, text="Send", width = 20, height = 2, bg = "gray83", command=buttonClicked)
-button.pack(side = LEFT)
 
 mylist.insert(END, "Enter your Username (Send)")
 
@@ -72,6 +67,7 @@ def startDaemon():
     thread.daemon = True
     thread.start()
 
+root.bind('<KeyPress>', ifEnterPressed)
 
 root.mainloop()
 
