@@ -19,7 +19,7 @@ ChatFrame.pack(side = TOP)
 ChatLabel = Label(ChatFrame, text="Welcome to the Chat Room!")
 ChatLabel.pack()
 
-textInput = Entry(Inputframe, width = 55, bd = 5)
+textInput = Entry(Inputframe, width = 75, bd = 5)
 textInput.pack(side = RIGHT)
 
 
